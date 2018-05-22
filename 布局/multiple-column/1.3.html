@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>多列布局</title>
+<link rel="stylesheet" type="text/css" href="demo.css">
+<style type="text/css">
+	body{margin:20px;}
+	
+	.parent{
+		
+	}
+	.left{
+		float: left;
+		width: 100px;
+		margin-right: 20px;
+	}
+	.right{
+		/*编程bfc模式，block formatting context，块级格式化上下文,bfc模式下面的容器它里面的内容跟外界是隔离的，外面的东西像浮动这样的元素，他是不会影响到bfc里面的内容的，和外界没有半点关系,ie6以下不支持*/
+		overflow: hidden;
+	}
+</style>
+</head>
+<body>
+<div class="parent">
+	<div class="left">
+		<p>left</p>
+	</div>
+	<div class="right">
+		<p>right</p>
+		<p>right</p>
+	</div>
+</div>
+</body>
+</html>

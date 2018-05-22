@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>多列布局</title>
+<!--  -->
+<link rel="stylesheet" type="text/css" href="demo.css">
+<style type="text/css">
+	body{margin:20px;}
+	
+	.parent{
+		display: flex;
+	}
+	.column{
+		/*相当于flex:1 1 0;也就是每列的初始宽度是0，也就是这个一行所有的宽度都用来分配，分配因子都是1，所以分配到的比例都是一样的*/
+		flex: 1;
+	}
+	/*一个column下面的column，第一个是不满足的*/
+	.column+.column{
+		/*flex分配的是3个margin-left除去后的剩余空间,所以不会超出*/
+		margin-left:20px;
+	}
+</style>
+</head>
+<body>
+<div class="parent">
+	<div class="column"><p>1</p></div>
+	<div class="column"><p>2</p></div>
+	<div class="column"><p>3</p></div>
+	<div class="column"><p>4</p></div>
+</div>
+</body>
+</html>

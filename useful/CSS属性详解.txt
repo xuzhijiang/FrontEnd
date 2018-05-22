@@ -1,0 +1,31 @@
+<!--  display: block|inline|inline-block|none -->
+
+<!--inline是同行,根据名字记忆-->
+<!--  inline: 默认宽度是内容的宽度,不可设置宽高，同行显示, 默认情况下(没有设置display属性)display: inline元素 span,a,label,cite,em.... -->
+
+<!--block是:一个element就占一行的空间-->
+<!--  默认情况下(没有设置display属性)display: block元素 - div,p,h1-h6,ul,li,form...-->
+<!--  block: 默认宽度是父元素的宽度,可以设置宽高的，换行显示 -->
+
+<!--  inline-block: 默认宽度是内容宽度,可以设置宽高的，如果前面和后面的元素是inline元素，那么同行显示 ,如果后续是inline-block的元素，并且宽度超过了这行的边界，会换行
+,如果是inline的元素，可以在元素内换行，这是不同。 默认的inline-block元素有 -input, textarea,select,button.... -->
+
+<!--  display:none，设置元素不显示. 和visibility:hidden的区别是后者占据空间. -->
+
+<!--  text-align 只能对行级元素(inline)起效果 -->
+
+<!-- height is the vertical measurement of the container. -->
+
+<!-- 行高指的是文本行的基线间的距离。 -->
+
+<!--  position: static|relative|absolute|fixed 默认的是static -->
+
+<!--  relative 是以自己为参照物，仍然在文档流中,top,left是以自己原来在文档流中的位置为参考的，可以改变层级  -->
+
+<!--  relative使用场景: 绝对定位元素的参照物 （因为relative是不脱离文档流的，对其他元素的位置没有影响,所以当做绝对定位的参照物）-->
+
+<!--  absolute: 宽度是内容的宽度，脱离文档流(不再占据他原来占据的位置), 浮在其他元素上面 参照物为第一个定位祖先/根元素(也就是html元素) 如果祖先上没有定位元素，那就以html为参照物,如果祖先有定位属性 -->
+
+<!--  fixed: 脱离文档流（不再占据原来的位置），宽度为内容的宽度,固定定位元素的参照物为视窗，也就是窗口,注意他是相对于视窗来定位的，并不是相对于html元素, 相对于视窗，也就是即使有滚动条，他也不会随着滚动条滚动 -->
+
+<!--  元素叠加的效果用position来实现 -->

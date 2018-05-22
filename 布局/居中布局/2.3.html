@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>垂直居中</title>
+<link rel="stylesheet" type="text/css" href="demo.css">
+<style type="text/css">
+	body{margin:20px;}
+	.parent{width:4em;height:500px;}
+	.child{width:100%;}
+
+	.parent{
+		/*child 的height会撑满整个容器，当父容器设置为display：flex,
+		flex item的align-items是默认值是strecth，也就是拉伸的，会被拉伸到和父容器一样高，我们设置为center就可以了*/
+		display: flex;
+		align-items: center;
+	}
+</style>
+</head>
+<body>
+<div class="parent">
+	<div class="child">DEMO</div>
+</div>
+</body>
+</html>
