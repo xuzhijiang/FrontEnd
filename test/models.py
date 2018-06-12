@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import os
 
 
 def create_args_string(num):
@@ -71,3 +72,7 @@ class User(metaclass=ModelMetaclass):
 	email = StringField(name='email', ddl='varchar(20)')
 	passwd = StringField(name='passwd', ddl='varchar(10)')
 	gender = StringField(name='gender', ddl='varchar(3)')
+
+print(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+print(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))
