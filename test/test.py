@@ -2,15 +2,21 @@
 # -*- coding: utf-8 -*-
 
 
-def add_route(fn):
-    method = getattr(fn, '__method__', None)
-    route = getattr(fn, '__route__', None)
+def add_routes(module_name):
+    n = module_name.rfind('.')
+    print('n: %s' % n)
+    if n == (-1):
+        mod = __import__(module_name, globals(), locals())
+    else:
+        name = module_name[n+1:]
+        mod = __import__(module_name[:n], globals(), locals(), [name])
+    print(dir(mod))
+    for attr in dir(mod):
+        if attr.startswith('__'):
+            continue
+        fn = getattr(mod, attr)
 
-text = 'handlers.py'
-index = text.rfind('.')
-print('result is %s' % text[:index])
 
-mod = __import__(text[:index], globals(), locals())
-print('mod is %s' % mod)
 
+add_routes("handlers.py")
 

@@ -28,11 +28,6 @@ def post(path):
     return decorator
 
 
-@get('/')
-def index(a, b, page = 1):
-    pass
-
-
 def get_required_kw_args(fn):
     args = []
     params = inspect.signature(fn).parameters
@@ -73,7 +68,13 @@ power(2, 4, 3, 5, city='hz', d=3, k='xzj')
 # inspect.Parameter.VAR_POSITIONAL e.g: *args
 # inspect.Parameter.POSITIONAL_OR_KEYWORD e.g: n, x
 
-def manager(*, page=1):
+def manager(n, x=3, *, page=1):
     pass
+
+
 m_args = get_required_kw_args(manager)
 print(m_args)
+
+value = inspect.signature(power).parameters.keys()
+print('type of value: %s' % type(value))
+print('%s(%s)' % (power ,', '.join(value)))
