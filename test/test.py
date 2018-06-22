@@ -2,16 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-def get_page_index(p_str):
-	page = 1
-	try:
-		page = int(p_str)
-	except ValueError as e:
-		print('error')
-		pass
-	print('page: %s' % page)
-	if page < 1:
-		page = 1
-	return page
+import logging, inspect, time, uuid
+logging.basicConfig(level=logging.INFO)
 
-print(get_page_index('35'))
+def foo(x):
+	return x * x
+
+r = map(foo, [1, 2, 4, 8])
+print(list(r))
