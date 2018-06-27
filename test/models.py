@@ -4,6 +4,15 @@
 import logging
 import os
 
+def next_id():
+	return '%015d%s000' % ((time.time() * 1000), uuid.uuid4().hex)
+
+# print(next_id())
+# user = User(id=uid, name=name.strip(), \
+# 	email=email, passwd=hashlib.sha1(sha1_passwd.encode('utf-8'))\
+# 	.hexdigest(), \
+# 	image='http://www.gravatar.com/avatar/%s?d=mm&s=120' \
+# 	% hashlib.md5(email.encode('utf-8')).hexdigest())
 
 def create_args_string(num):
 	L = []

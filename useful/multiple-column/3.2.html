@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>多列布局</title>
+<link rel="stylesheet" type="text/css" href="demo.css">
+<style type="text/css">
+	body{margin:20px;}
+	
+	.parent-fix{
+		/*增加20px*/
+		margin-left: -20px;
+	}
+	.parent{
+		display: table;
+		width:100%;
+		/*局部优先，加入单元格没有设置宽度的，那么单元格宽度是平分的,结构和样式已经解耦了，没有耦合性*/
+		table-layout: fixed;
+	}
+	.column{
+		display: table-cell;
+		padding-left: 20px;
+	}
+</style>
+</head>
+<body>
+<div class="parent-fix">
+	<div class="parent">
+		<div class="column"><p>1</p></div>
+		<div class="column"><p>2</p></div>
+		<div class="column"><p>3</p></div>
+		<div class="column"><p>4</p></div>
+	</div>
+</div>
+</body>
+</html>

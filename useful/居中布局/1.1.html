@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>水平居中</title>
+<link rel="stylesheet" type="text/css" href="demo.css">
+<style type="text/css">
+	body{margin:20px;}
+	
+	.parent{
+		text-align: center;
+	}
+	.child{
+		width: 200px;
+		display: inline-block;
+		/*text-align: left;*/
+	}
+</style>
+</head>
+<body>
+<!-- 里面的容器相对于外面的容器水平居中,里面的容器宽度不一定，外面也是不一定的 -->
+<div class="parent">
+<!-- text-align 对inline元素是起作用的，也就是对display:inline-block的元素起作用 -->
+<!-- inline-block的宽度是根据内容来的 -->
+<!-- 里面的块级元素默认会撑满整个父元素 -->
+<!-- div-child和里面的内容都继承了父元素设置的text-align:center，所以child要修复 -->
+	<div class="child">DEMO</div>
+</div>
+</body>
+</html>
