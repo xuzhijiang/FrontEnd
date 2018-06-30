@@ -82,6 +82,3 @@ class User(metaclass=ModelMetaclass):
 	passwd = StringField(name='passwd', ddl='varchar(10)')
 	gender = StringField(name='gender', ddl='varchar(3)')
 
-print(os.path.abspath(__file__))
-print(os.path.dirname(os.path.abspath(__file__)))
-print(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))

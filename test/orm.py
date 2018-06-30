@@ -182,4 +182,23 @@ class Model(dict):
 
 	@asyncio.coroutine
 	def save(self):
-		args = 
+		args = list(map(self.getValueOrDefault, self.__fields__))
+		args.append(self.getValueOrDefault(self.__primary_key__))
+		row = yield from execute(self.__insert__, args)
+		if row != 1:
+			logging.warn('failed to insert record: affected rows: %s' % row)
+
+	@asyncio.coroutine
+	def update(self):
+		args = list(map(self.getValueOrDefault, self.__fields__))
+		args.append(self.getValueOrDefault(self.__primary_key__))
+		row = yield from execute(self.__update__, args)
+		if row != 1:
+			logging.warn('')
+
+	@asyncio.coroutine
+	def remove(self):
+		args = [self.getValue(self.__primary_key__)]
+		row = yield from execute(self.__delete__, args)
+		if row != 1:
+			logging.warn('') 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        Ajax = function(W_) {
+        function _Ajax(t, e) {
+            this.url = t || "", this.params = e.parameters || "", this.mime = e.mime || "text/html", this.onComplete = e.onComplete || this.defaultOnCompleteFunc, this.onLoading = e.onLoading || this.defaultOnLoadingFunc, this.onError = e.onError || this.defaultOnErrorFunc, this.method = e.method || "get", void 0 === e.sync || null == e.sync ? this.sync = !0 : this.sync = !!e.sync, this.loadData()
+        }
+
+        function detectParameter(t) {
+            if (t.constructor != Object) throw new Error("Parameters are not objects");
+            for (var e = ["url", "method", "onComplete"], i = !0, s = 0; s < e.length; s++) {
+                if (void 0 == t[e[s]] || null == t[e[s]]) throw new Error("parameter error");
+                i = !0
+            }
+            return i
+        }
+        return _Ajax.prototype = {
+            READY_STATE_COMPLETE: 4,
+            getRequest: function() {
+                var t = null;
+                return window.XMLHttpRequest ? t = new XMLHttpRequest : window.ActiveXObject && (t = new ActiveXObject("Microsoft.XMLHTTP")), t || !1
+            },
+            parseParams: function() {
+                if ("string" == typeof this.params) return this.params;
+                var t = [];
+                for (var e in this.params) t.push(e + "=" + this.params[e]);
+                return t.join("&")
+            },
+            loadData: function() {
+                if (this.req = this.getRequest(), !this.req) throw "_Ajax Object Get Failed";
+                this.onLoading();
+                try {
+                    if (this.params) {
+                        var t = this.parseParams();
+                        "get" == this.method ? 0 < this.url.indexOf("?") ? this.url += "&" + t : this.url += "?" + t : this.params = t
+                    }
+                    var e = this;
+                    this.req.onreadystatechange = function() {
+                        e.req.readyState == e.READY_STATE_COMPLETE && (200 == e.req.status ? e.onComplete.call(e, e.req.responseText) : e.onError.call(e, e.req.status))
+                    }, this.req.open(this.method, this.url, this.sync), "post" == this.method && this.req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), this.req.overrideMimeType && this.req.overrideMimeType(this.mime), this.req.setRequestHeader("VIS-Ajax", "AjaxHttpRequest"), this.req.send("post" == this.method ? this.params : null)
+                } catch (t) {
+                    this.onError.call(this, t)
+                }
+            },
+            defaultOnCompleteFunc: function() {},
+            defaultOnLoadingFunc: function() {},
+            defaultOnErrorFunc: function(t) {
+                throw t
+            }
+        }, {
+            getData: function(obj) {
+                if (detectParameter(obj)) {
+                    var _data = {
+                            parameters: void 0 == obj.param ? {} : obj.param,
+                            method: obj.method,
+                            dataType: void 0 == obj.dataType ? "text" : obj.dataType,
+                            sync: obj.sync
+                        },
+                        _url = obj.url,
+                        _cb = obj.onComplete,
+                        _onError_cb = obj.onError;
+                    if ("jsonp" == _data.method) {
+                        var _tag = document.createElement("script"),
+                            _cbname = void 0 != _data.parameters.callback ? _data.parameters.callback : "jsonpCallback_" + Math.random().toString().substr(2, 13),
+                            _exec_flag = 0;
+                        return _tag.async = !0, _cb = _cb || function() {}, _data.parameters.callback = _cbname, W_[_cbname] = function(t) {
+                            _exec_flag = 1, document.head.removeChild(_tag), W_[_cbname] = null, _cb(t)
+                        }, _tag.onerror = function(t) {
+                            document.head.removeChild(_tag), W_[_cbname] = null, _onError_cb({
+                                ret: 0,
+                                msg: "bad request!"
+                            })
+                        }, _tag.onload = _tag.onreadystatechange = function() {
+                            this.readyState && "loaded" != this.readyState && "complete" != this.readyState || 0 == _exec_flag && _onError_cb({
+                                ret: 0,
+                                msg: "bad data!"
+                            })
+                        }, document.head.appendChild(_tag), void(0 < _url.indexOf("?") ? _tag.src = _url + "&" + _Ajax.prototype.parseParams.call({
+                            params: _data.parameters
+                        }) : _tag.src = _url + "?" + _Ajax.prototype.parseParams.call({
+                            params: _data.parameters
+                        }))
+                    }
+                    "json" == _data.dataType ? _data.onComplete = function(data_) {
+                        try {
+                            data_ = window.JSON && "undefined" != JSON.parse ? JSON.parse(data_) : eval(data_)
+                        } catch (t) {
+                            return void _onError_cb(t)
+                        } {
+                            if ("object" == typeof data_) return _cb(data_);
+                            _onError_cb(data_)
+                        }
+                    } : _data.onComplete = _cb, _onError_cb && (_data.onError = function(t) {
+                        return _onError_cb(t)
+                    }), new _Ajax(_url, _data)
+                }
+            }
+        }
+    }(window);
+    function print(){
+        console.log('settimeout');
+    }
+    setTimeout(print, 1000);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
