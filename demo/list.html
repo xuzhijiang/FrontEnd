@@ -107,6 +107,7 @@
             var html = TrimPath.merge(
                 tplContent,{tracks:list},config
             );
+            // {tracks:list}: tracks默认就是字符串
             parent.insertAdjacentHTML('beforeEnd',html);
         }
 

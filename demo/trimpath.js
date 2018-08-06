@@ -519,9 +519,11 @@
         return function(_sn,_data,_extend){
             try{
                 _data = _data||{};
+                console.log('_data: ' + _data);
                 if (!_fcache[_sn]&&!_tcache[_sn])
                     return '';
                 if (!_fcache[_sn]){
+                    //parse template
                     _fcache[_sn] = _doParseTemplate(_tcache[_sn]);
                     delete _tcache[_sn];
                 }
@@ -530,6 +532,7 @@
                         if (!_extend[x])
                             _extend[x] = _config.ext[x];
                 }
+                //fill template using _data
                 return _fcache[_sn](_data,_extend||_config.ext);
             }catch(ex){
                 return ex.message||'';
