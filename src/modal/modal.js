@@ -1,14 +1,13 @@
 var emitter = {
   // 注册事件
   on: function(event, fn) {
-    console.log(this._handles)
+    //this._handlers是一个{}对象，里面的key指的是某一个事件，
+    //key对应的value是一个Array[],数组中包含了这个事件对应的回调函数.
     var handles = this._handles || (this._handles = {}),
       calls = handles[event] || (handles[event] = []);
-    console.log(handles[event])
 
     // 找到对应名字的栈
     calls.push(fn);
-    console.log(fn);
 
     return this;
   },
@@ -18,16 +17,19 @@ var emitter = {
     if(!this._handles) return;
 
     var handles = this._handles , calls;
+    //handlers的值为this._handles
+    //calls为undefined
 
     if (calls = handles[event]) {
+      //如果fn为空，也就是要解绑event事件上的所有的函数
       if (!fn) {
-        handles[event] = [];
+        handles[event] = [];//清空event事件上的函数即可
         return this;
       }
       // 找到栈内对应listener 并移除
       for (var i = 0, len = calls.length; i < len; i++) {
         if (fn === calls[i]) {
-          calls.splice(i, 1);
+          calls.splice(i, 1);//在index为i个位置开始删，删除i个
           return this;
         }
       }
@@ -36,12 +38,16 @@ var emitter = {
   },
   // 触发事件
   emit: function(event){
+    //[].slice.call(arguments, 2);//从arguments中
+    //截取索引为2开始之后的元素(包括索引为2的位置的元素)，然后调用slice，变成一个Array.
     var args = [].slice.call(arguments, 1),
       handles = this._handles, calls;
 
+    //handles[event]得到的是一个数组，数组中是事件event对应的所有的回调函数
     if (!handles || !(calls = handles[event])) return this;
     // 触发所有对应名字的listeners
     for (var i = 0, len = calls.length; i < len; i++) {
+      //apply是将所有参数组成一个array传入apply的
       calls[i].apply(this, args)
     }
     return this;
@@ -139,6 +145,8 @@ var emitter = {
 
     // 初始化事件
     _initEvent: function(){
+      //在modal上点击确认后，modal会发射confirm事件，如果当前的modal注册了confirm事件，
+      //就会触发，如果modal没有注册confirm事件，也不会影响modal发射confirm事件.
       this.container.querySelector('.confirm').addEventListener(
         // 'click', this._onConfirm.bind(this)
         'click', this._onConfirm.bind(this)
