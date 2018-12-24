@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<!-- <script src="test.js"></script> -->
+	<script type="text/javascript">
+		function html2node(str){
+			var container = document.createElement('div');
+			container.innerHTML = str;
+			return container.children[0];
+		}
+
+		var template = 
+				'<div class="m-modal">\
+				<div class="modal_align"></div>\
+				<div class="modal_wrap animated">\
+				  <div class="modal_head">标题</div>\
+				  <div class="modal_body">内容</div>\
+				  <div class="modal_foot">\
+				    <a class="confirm" href="#">确认</a>\
+				    <a class="cancel" href="#">取消</a>\
+				  </div>\
+				</div>\
+				</div>';
+		console.log(typeof(template));
+		var layout = html2node(template);
+
+		var o2 = {
+
+		    _layout: html2node(template),
+
+		    setContent: function(content){
+		      if(!content) return;
+		      //支持两种字符串结构和DOM节点
+		      if(content.nodeType === 1){
+		        this.body.innerHTML = 0;
+		        this.body.appendChild(content);
+		      }else{
+		        this.body.innerHTML = content;
+		      }
+		    },
+
+		    // 显示弹窗
+		    show: function(content){
+		      
+		      if(content) this.setContent(content);
+
+		      document.body.appendChild(this.container);
+		      animateClass(this.wrap, this.animation.enter)
+		    },
+
+		    hide: function(){
+		      var container = this.container;
+		      animateClass(this.wrap, this.animation.leave, function(){
+		        document.body.removeChild(container);
+		      })
+		    },
+
+		    // 初始化事件
+		    _initEvent: function(){
+		      this.container.querySelector('.confirm').addEventListener(
+		        // 'click', this._onConfirm.bind(this)
+		        'click', this._onConfirm.bind(this)
+		      )
+		      this.container.querySelector('.cancel').addEventListener(
+		        'click', this._onCancel.bind(this)
+		      )
+		    },
+
+		    _onConfirm: function(){
+		      this.emit('confirm')
+		      this.hide();
+		    },
+
+		    _onCancel: function(){
+		      this.emit('cancel')
+		      this.hide();
+		    }
+		  };
+
+		  console.log(o2._layout);
+		  for(var i in o2){
+		  	console.log(i);
+		  }
+		  function Point(x, y){
+			    this.x = x;
+			    this.y = y;
+			}
+			Point.prototype.move = function(x, y) {
+			    this.x += x;
+			    this.y += y;
+			}
+			var p = new Point(0,0);
+			var circle = {x:1, y:1, r:1};
+			var circleMove = p.move.bind(circle, 5);
+			circleMove(4, 4);
+			console.log(typeof(circleMove));
+			console.log(circle.x);
+			console.log(circle.y);
+			var students = [{id:1,score:80},{id:2,score:50},{id:3,score:70}];
+			students.push({id:4, score: 90});
+			console.log(students);
+			var o = {};
+			console.log(!o);
+			var _handles = 'eeeehandles';
+			var handles = _handles , calls;
+			console.log(handles);
+			console.log(calls);
+	</script>
+</head>
+<body>
+</body>
+</html>
