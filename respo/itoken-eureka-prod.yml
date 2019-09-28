@@ -13,6 +13,9 @@ eureka:
     registerWithEureka: true
     # 表示是否从 Eureka 获取注册信息，如果是单一节点，不需要同步其他 Eureka 节点，则可以设置为 false，但此处为集群，应该设置为 true
     fetchRegistry: true
+    # 集群最少有3台计算机,集群的端口号要分配好,要足够,在某一个数字区间范围内,易于管理.
+    # 这里是8761,8861,8961
     # 多台eureka的地址,用逗号分隔
+    # 端口要用大于1024数字,因为0-1024是公认的知名服务的端口.
     serviceUrl:
-      defaultZone: http://192.168.75.128:8761/eureka/,http://192.168.75.128:8861/eureka/,http://192.168.75.128:8961/eureka/
+      defaultZone: http://192.168.32.128:8761/eureka/,http://192.168.32.128:8861/eureka/,http://192.168.32.128:8961/eureka/

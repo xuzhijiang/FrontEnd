@@ -2,7 +2,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://192.168.75.128:8084
+        url: http://192.168.32.128:8084
 
 management:
   endpoint:
