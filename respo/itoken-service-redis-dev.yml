@@ -2,5 +2,6 @@ spring:
   application:
     name: itoken-service-redis
 
+# 端口要写到文档里面,因为很多port,容易忘记,所以要统一管理.
 server:
   port: 8502
