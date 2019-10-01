@@ -6,6 +6,8 @@ spring:
         max-idle: 8
         max-wait: -1ms
         min-idle: 0
+    # 这个文件里面是正式的配置,因为我不想连接sentinel,
+    # 占用太多内存,而且redis容器受攻击,所以我在dev环境中直接连接了redis
     sentinel:
       master: mymaster
       nodes: 192.168.75.128:26379, 192.168.75.128:26380, 192.168.75.128:26381
