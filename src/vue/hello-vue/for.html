@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>for</title>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {message: "LebronJames"},
+                {message: "Kobe"},
+                {message: "Curry"},
+                {message: "klay"}
+            ]
+        }
+    });
+</script>
+</body>
+</head>
+</html>

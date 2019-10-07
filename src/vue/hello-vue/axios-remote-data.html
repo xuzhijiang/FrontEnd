@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>axios 请求跨域数据</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li>{{info.username}}</li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                info: {
+                    username: "用户名"
+                }
+            }
+        },
+        mounted() {
+            axios.get("http://localhost:9090/getUser").then(response => this.info = response.data);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li>名称: {{info.name}}</li>
+        <li><a v-bind:href="info.url">{{info.url}}</a></li>
+        <li>地址: {{info.address}}</li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        // 返回数据
+        data() {
+            // 函数对象要有一个返回值
+          return {
+              info: {
+                  name: "",
+                  url: "",
+                  address: {
+                      street: "",
+                      city: "",
+                      country: ""
+                  }
+              }
+          }
+        },
+        // hook函数,初始化页面
+        mounted() {
+            // 获取本地的data.json(没有跨域问题,因为是本地的)
+            axios.get("data.json").then(response => this.info = response.data);
+        }
+    });
+</script>
+</body>
+</html>
