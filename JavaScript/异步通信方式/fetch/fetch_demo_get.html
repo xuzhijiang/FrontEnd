@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script>
+        fetch("http://localhost:9090/fetch?c=200", {
+            method: "GET",
+        }).then(res=>res.json()).then(d=>console.log(d));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

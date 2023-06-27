@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
+    <script>
+        axios({
+            url: "http://localhost:9090/axios?e=200",
+            method: "POST", // ajax中post默认提交方式为表单形式,也就是content-type默认为x-www-form-urlencoded
+            // 而axios默认content-type为application/json
+            data: {d: 1000}
+        }).then(res=>console.log(res.data));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // 数组解构
+        let arr = [1, 2, 3];
+        // 以前给a,b,c赋值方式:
+        // let a = arr[0];
+        // let b = arr[1];
+        // let c = arr[2];
+
+        // 现在的赋值方式:
+        let [a, b, c] = arr;
+        // 或者通过const
+        const [d, e, f] = arr;
+
+        console.log(a, b, c);
+        console.log(d, e, f);
+
+
+        //对象解构
+        const person = {
+            name: "jack",
+            age: 21,
+            language: ['java', 'js', 'css']
+        }
+
+        // 以前给变量赋值:
+        //         const name = person.name;
+        //         const age = person.age;
+        //         const language = person.language;
+
+
+        //对象解构
+        // 第一个name: abc是什么意思? 把name的值从person对象中取出来,赋值给abc
+        const { name: abc, age, language } = person;
+
+        console.log(abc, age, language)
+
+        //4、字符串扩展
+
+        let str = "hello.vue";
+        console.log(str.startsWith("hello"));//true
+        console.log(str.endsWith(".vue"));//true
+        console.log(str.includes("e"));//true
+        console.log(str.includes("hello"));//true
+
+
+        //字符串模板(模板字符串相当于加强版的字符串,用反引号`,除了作为普通字符串,还可以用来定义多行字符串,
+        // 还可以在字符串中加入变量和表达式)
+        // 中间的空格,换行都算
+        let ss = `<div>
+                    <span>hello world<span>
+                </div>`;
+        console.log(ss);
+
+          // 2、给字符串插入变量和表达式(${age+10}),也可以调用方法(比如下面的${fun()})。变量名写在 ${} 中，${} 中可以放入 JavaScript 表达式。
+
+        function fun() {
+            return "这是一个函数"
+        }
+
+        let info = `我是${abc}，今年${age + 10}了, 我想说： ${fun()}`;
+        console.log(info);
+
+
+
+    </script>
+</body>
+
+</html>

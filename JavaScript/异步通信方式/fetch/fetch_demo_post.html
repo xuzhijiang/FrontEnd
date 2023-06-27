@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script>
+        // fetch也是异步的调用,返回的是Promise对象.
+        // res.json()是把响应转化成json格式
+        // d=>console.log(d): 把响应打印出来.
+        fetch("http://localhost:9090/fetch?c=200", {
+            method: "POST",
+            headers: {"Content-Type": "application/x-www-form-urlencoded"}, // 以表单的形式提交
+            body: "a=12&b=33" // 指定数据,这个和ajax不一样,不是使用data指定.而是使用body指定.
+            // 而且因为是使用表单提交,必须要写成 &这种形式.
+        }).then(res=>res.json()).then(d=>console.log(d));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li>名称: {{info.name}}</li>
+        <li>链接:<a v-bind:href="info.url">{{info.url}}</a></li>
+        <li>地址: {{info.address}}</li>
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        // MVVM中有一个数据承载模型,vue中,data就是承载数据的地方,页面可以直接使用data承载的数据
+        // data(){} 叫函数对象,()叫函数,{}是对象,所以合起来就叫函数对象
+        // 因为页面要使用数据,所以data(){} 这个函数对象一定要有一个返回值,必须要return
+        // 这个就是MVVM的数据承载模型
+        data() {
+          return {
+              info: {
+                  name: "",
+                  url: "",
+                  address: {
+                      street: "",
+                      city: "",
+                      country: ""
+                  }
+              }
+          }
+        },
+        // hook函数(钩子函数),初始化页面
+        mounted() {
+            // 获取本地的data.json(获取本地的json,也会有跨域问题)
+            
+            // 报错: Access to XMLHttpRequest at 'file:///D:/projects/computer_science/FrontEnd/vue/hello-vue/data.json' 
+            // from origin 'null' has been blocked by CORS policy: 
+            // Cross origin requests are only supported for protocol schemes: http, data, chrome, 
+            // chrome-extension, https.
+            
+            // 有点像lambda表达式,将response的data赋值给info
+            axios.get("data.json").then(response => this.info = response.data);
+        }
+    });
+</script>
+</body>
+</html>

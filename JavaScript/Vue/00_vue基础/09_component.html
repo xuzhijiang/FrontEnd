@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>first vue</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 绑定自定义组件my-li中的属性xxx到for循环的item上-->
+            <my-li v-for="item in items" v-bind:xxx="item"></my-li>
+        </ul>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+    // 组件是可以复用,页面是由n多组件组合而成.
+    Vue.component("my-li", {
+        props: ["xxx"],
+        template: "<li style='color: red;'>{{xxx}}</li>"
+    });
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            items: ["LebronJames", "Kobe", "curry", "KD"]
+        }
+    });
+</script>
+</body>
+</html>

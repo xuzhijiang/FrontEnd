@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script>
+        // fetch也是异步的调用,返回的是Promise对象.
+        // res.json()是把响应转化成json格式
+        // d=>console.log(d): 把响应打印出来.
+        fetch("http://localhost:9090/fetch").then(res=>res.json()).then(d=>console.log(d));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

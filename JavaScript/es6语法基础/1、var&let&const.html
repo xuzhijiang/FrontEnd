@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+       // var 声明的变量往往会越域
+       // let 声明的变量有严格局部作用域
+        {
+            var a = 1;
+            let b = 2;
+        }
+        console.log(a);  // 1
+//         console.log(b);  // Uncaught ReferenceError: b is not defined,这里报错之后,后面的js就都不执行了.
+
+
+        // var 可以声明多次
+        // let 只能声明一次,多次声明会报错
+        var m = 1
+        var m = 2
+        let n = 3
+        //let n = 4
+        console.log('m:' + m)  // 2
+        console.log('n:' + n)  // Identifier 'n' has already been declared
+
+        // var 会变量提升
+        // let 不存在变量提升
+        console.log(x);  // undefined,后面的js依然可以执行
+        var x = 10;
+//         console.log(y);   //Uncaught ReferenceError: Cannot access 'y' before initialization 这里报错之后,后面的js就都不执行了.
+        let y = 20;
+
+        // let
+        // 1. 声明之后不允许改变
+        // 2. 一但声明必须初始化，否则会报错
+        const d = 1; // const声明常量(只读变量)
+        //c = 3; //Uncaught TypeError: Assignment to constant variable.
+
+        // const e; // Uncaught SyntaxError: Missing initializer in const declaration //  一但声明必须初始化，否则会报错
+
+    </script>
+
+</body>
+</html>

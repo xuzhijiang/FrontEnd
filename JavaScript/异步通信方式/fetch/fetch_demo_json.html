@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script>
+        fetch("http://localhost:9090/fetch?a=200", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"}, // 以json的形式提交
+            body: JSON.stringify({a: 100})
+        }).then(res=>res.json()).then(d=>console.log(d));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

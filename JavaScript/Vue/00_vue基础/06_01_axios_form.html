@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>axios-form</title>
+</head>
+<body>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
+    <script>
+        axios({
+            url: "http://localhost:9090/axios?e=200",
+            method: "POST", 
+            headers: {"Content-Type": "x-www-form-urlencoded"},
+            data: "aaa=1000&bbb=200" // 以表单的形式提交就不能以json的数据格式了,而是要以查询字符串的格式提交.
+        }).then(res=>console.log(res.data));
+    </script>
+</body>
+</html>

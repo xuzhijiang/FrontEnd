@@ -1,0 +1,20 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试each</title>
+</head>
+<body>
+    <div>aaa</div>
+    <div id="stop">Stop here</div> 
+    <div>ddd</div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $("div").each(function (aIndex, curEle) {
+            console.log("index : " + aIndex);
+            console.log("curEle : " + curEle);
+        });
+    </script>
+</body>
+</html>
